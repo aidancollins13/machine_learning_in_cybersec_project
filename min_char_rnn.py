@@ -3,12 +3,14 @@ Minimal character-level Vanilla RNN model. Written by Andrej Karpathy (@karpathy
 BSD License
 """
 import numpy as np
+import random
+import string
 import os
 
 # data I/O
 data = ''
 
-for filename in os.listdir('omg'):
+for filename in os.listdir('vocab'):
     f = open('vocab/' + filename, 'r')
     data += f.read()
     f.close()
@@ -102,6 +104,15 @@ while True:
     sample_ix = sample(hprev, inputs[0], 200)
     txt = ''.join(ix_to_char[ix] for ix in sample_ix)
     print( '----\n %s \n----' % (txt, ))
+
+  if n % 5000 == 0:
+    for i in range(5):
+        c = random.choise(string.letters)
+        s = sample(np.zeros((hidden_size,1)), c, 100)
+        f = open('output/{}.txt'.format(str(i)),'w')
+        t = ''.join(ix_to_char[ix] for ix in s)
+        f.write(t)
+        f.close()
 
   # forward seq_length characters through the net and fetch gradient
   loss, dWxh, dWhh, dWhy, dbh, dby, hprev = lossFun(inputs, targets, hprev)

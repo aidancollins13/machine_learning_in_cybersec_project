@@ -1,5 +1,4 @@
-from twitterscraper import query_tweets
-
+import twitterscraper
 from twython import Twython
 import config
 
@@ -18,14 +17,14 @@ search = t.get_place_trends(id=23424977)
 top_hashtag = (search[0]['trends'][0]['name'])
 
 print("The top trending hashtag in the US is", top_hashtag)
-tweets = query_tweets(top_hashtag, 3000,lang='en')
+tweets = twitterscraper.query_tweets(top_hashtag, 2000,lang='en')
+print("got {} tweets".format(len(tweets)))
 
 for i,tweet in enumerate(tweets):
     name = 'vocab/{}.txt'.format(str(i))
     t = tweet.text.split()
     t = filter(lambda x:x[0]!='@' and 'http' not in x, t)
     t = ' '.join(t)
-    print( '\n', t, '\n\n\n')
     f = open(name, 'w')
     f.write(t)
     f.close()
