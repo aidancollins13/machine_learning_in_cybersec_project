@@ -1,6 +1,7 @@
 import twitterscraper
 from twython import Twython
 import config
+import sys
 
 TWITTER_APP_KEY = config.TWITTER_APP_KEY
 TWITTER_APP_KEY_SECRET = config.TWITTER_APP_KEY_SECRET
@@ -15,9 +16,14 @@ t = Twython(app_key=TWITTER_APP_KEY,
 search = t.get_place_trends(id=23424977)
 
 top_hashtag = (search[0]['trends'][0]['name'])
+try:
+    string = sys.argv[1]
+except:
+    string = top_hashtag
 
 print("The top trending hashtag in the US is", top_hashtag)
-tweets = twitterscraper.query_tweets(top_hashtag, 2000,lang='en')
+print("Getting tweets containing", string)
+tweets = twitterscraper.query_tweets(string, limit=2000,lang='en')
 print("got {} tweets".format(len(tweets)))
 
 for i,tweet in enumerate(tweets):
