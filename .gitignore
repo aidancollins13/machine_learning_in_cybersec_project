@@ -1,1 +1,4 @@
 vocab/*.txt
+!vocab/.gitkeep
+output/*.txt
+!output/.gitkeep
