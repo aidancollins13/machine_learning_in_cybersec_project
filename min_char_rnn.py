@@ -100,10 +100,6 @@ while True:
   targets = [char_to_ix[ch] for ch in data[p+1:p+seq_length+1]]
 
   # sample from the model now and then
-  if n % 100 == 0:
-    sample_ix = sample(hprev, inputs[0], 200)
-    txt = ''.join(ix_to_char[ix] for ix in sample_ix)
-    print( '----\n %s \n----' % (txt, ))
 
   if n % 5000 == 0:
     for i in range(5):

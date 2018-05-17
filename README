@@ -12,3 +12,11 @@ The config file only needs the following
 	TWITTER_ACCESS_TOKEN_SECRET =
 
 To run simply run the tweetgen.py file
+
+it has two modes
+	
+to collect data run
+	python tweetgen.py collect_data
+
+to generate tweets while training the network run
+	python tweetgem.py gen_tweets
