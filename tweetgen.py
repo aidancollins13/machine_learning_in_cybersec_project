@@ -103,7 +103,7 @@ while True:
 
   if n % 5000 == 0:
     for i in range(5):
-        seed = rand.randint(0, len(chars))
+        seed = rand.randint(0, len(chars)-1)
         s = sample(np.zeros((hidden_size,1)),seed , 100)
         f = open('output/{}.txt'.format(str(i)),'w')
         t = ''.join(ix_to_char[ix] for ix in s)

@@ -15,7 +15,7 @@ t = Twython(app_key=TWITTER_APP_KEY,
 
 search = t.get_place_trends(id=23424977)
 
-top_hashtag = (search[0]['trends'][0]['name'])
+top_hashtag = (search[0]['trends'][1]['name'])
 try:
     string = sys.argv[1]
 except:
